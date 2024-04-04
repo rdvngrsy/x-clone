@@ -4,13 +4,16 @@ import classNames from "classnames";
 import { mainMenuItems } from "../../../../utils/consts";
 import More from "./more";
 import New from "./new";
+import { useAccount } from "../../../../store/auth/hooks";
 
 const Menu = () => {
+  const account = useAccount()
+
   return (
-    <nav className="">
+    <nav className="" key={account}>
       {mainMenuItems.map((menuItem, index) => (
-        <div key={index} className="py-[3.3px]">
-          <NavLink to={menuItem.path} className="group ">
+        <div key={index}  className="py-[3.3px]">
+          <NavLink to={typeof menuItem.path == 'function' ? menuItem.path() : menuItem.path} className="group ">
             {({ isActive }) => (
               <div
                 className={classNames(
