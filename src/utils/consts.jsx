@@ -208,3 +208,67 @@ export const mainMenuItems = [
     },
   },
 ];
+
+
+export const topics = [
+	{
+		title: 'Spor',
+		topic: {
+			type: 'query',
+			value: 'Şampiyonlar Ligi'
+		}
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'tag',
+			value: 'DolarTL'
+		},
+		postCount: 15640
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'query',
+			value: 'OHAL'
+		}
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'tag',
+			value: 'Suç'
+		},
+		postCount: 1233
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'tag',
+			value: 'Tffİstifa'
+		},
+		postCount: 45700
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'query',
+			value: 'Yağmur'
+		}
+	},
+	{
+		title: 'Spor',
+		topic: {
+			type: 'query',
+			value: 'Trendyol Süper Lig'
+		}
+	},
+	{
+		title: 'Türkiye tarihinde gündemde',
+		topic: {
+			type: 'tag',
+			value: 'Anayasa'
+		},
+		postCount: 18450
+	},
+]

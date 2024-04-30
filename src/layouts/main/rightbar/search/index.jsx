@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import {useClickAway} from 'react-use';
 
 const Search = () => {
+  const [focus, setFocus] = useState(false);
   const [query, setQuery] = useState("");
+
+  const ref = useRef();
+  useClickAway(ref, () => {
+    setFocus(false);
+  });
+
   return (
-    <div className="mb-3 h-[53px] w-full min-h-8 flex items-center ">
+    <div ref={ref} className="mb-3 h-[53px] w-full min-h-8 flex items-center sticky top-0 bg-black z-10">
       <label className="h-[46px] bg-[#202327] w-full rounded-full group relative border border-transparent focus-within:bg-black focus-within:border-[#1d9bf0]">
-        <div className="w-[56px] h-full flex justify-center items-center absolute top-0 left-0">
+        <div className="w-[56px] h-full flex justify-center items-center absolute top-0 left-0 pointer-events-none">
           <svg
             viewBox="0 0 24 24"
             height={18.75}
@@ -19,13 +27,18 @@ const Search = () => {
         </div>
         <input
           type="text"
-          className="w-full h-full bg-transparent rounded-full outline-none pl-[56px] text-[15px] placeholder-[#71767b] placeholder-opacity-50 "
+          className="w-full h-full bg-transparent rounded-full outline-none pl-[56px] text-[15px] placeholder-opacity-50 placeholder:text-[#71767b]"
           placeholder="Ara"
+          onFocus={() => setFocus(true)}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        {query && (
-          <button className="right-3 w-[22px] h-[22px] flex justify-center items-center rounded-full bg-[#1d9bf0] text-black min-w-[22px] absolute top-1/2 -translate-y-1/2">
+        {(query && focus) && (
+          <button
+            type="button"
+            onClick={() => setQuery("")}
+            className="right-3 w-[22px] h-[22px] flex justify-center items-center rounded-full bg-[#1d9bf0] text-black min-w-[22px] absolute top-1/2 -translate-y-1/2"
+          >
             <svg viewBox="0 0 15 15" width={10} height={10}>
               <path
                 fill="currentColor"
@@ -33,6 +46,11 @@ const Search = () => {
               ></path>
             </svg>
           </button>
+        )}
+        {focus && (
+          <div className="absolute top-full  w-[350px] -left-px translate-y-[1px] shadow-box bg-black max-h-[calc(-53px + 80vh)] rounded-lg  text-center min-h-[100px]">
+            <p className="text-[#71767b] pt-5 p-3 leading-5">Kişileri, listeleri veya anahtar kelimeleri aramayı dene</p>
+          </div>
         )}
       </label>
     </div>
